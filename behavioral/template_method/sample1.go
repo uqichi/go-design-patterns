@@ -26,12 +26,14 @@ func (wcp *woodCutPrint) process() {
 }
 
 type cuttable interface {
-	cut()
+	getName() string
 }
 
 type wood struct{}
 
-func (*wood) cut() {}
+func (*wood) getName() string {
+	return "wood"
+}
 
 type myWoodCutPrint struct{}
 
@@ -40,15 +42,15 @@ func newMyWoodCutPrint() *myWoodCutPrint {
 }
 
 func (*myWoodCutPrint) draw(cuttable cuttable) {
-	fmt.Println("my drawing")
+	fmt.Println("my drawing on " + cuttable.getName())
 }
 
 func (*myWoodCutPrint) cut(cuttable cuttable) {
-	fmt.Println("my cutting")
+	fmt.Println("my cutting " + cuttable.getName())
 }
 
 func (*myWoodCutPrint) print(cuttable cuttable) {
-	fmt.Println("my printing")
+	fmt.Println("my printing on " + cuttable.getName())
 }
 
 type yourWoodCutPrint struct{}
@@ -58,13 +60,13 @@ func newYourWoodCutPrint() *yourWoodCutPrint {
 }
 
 func (*yourWoodCutPrint) draw(cuttable cuttable) {
-	fmt.Println("your drawing")
+	fmt.Println("your drawing on " + cuttable.getName())
 }
 
 func (*yourWoodCutPrint) cut(cuttable cuttable) {
-	fmt.Println("your cutting")
+	fmt.Println("your cutting " + cuttable.getName())
 }
 
 func (*yourWoodCutPrint) print(cuttable cuttable) {
-	fmt.Println("your printing")
+	fmt.Println("your printing on " + cuttable.getName())
 }
