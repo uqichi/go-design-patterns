@@ -33,7 +33,7 @@ func (pb PrintBanner) printStrong() {
 }
 
 // Client
-// it is import that Banner is hidden from the code
+// Bannerがコードから隠されていることが重要
 func main() {
 	var p Print = PrintBanner{"Hello"}
 	p.printWeak()
