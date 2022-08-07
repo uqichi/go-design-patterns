@@ -39,7 +39,3 @@ func main() {
 	p.printWeak()
 	p.printStrong()
 }
-
-// Output
-//(Hello)
-//*Hello*

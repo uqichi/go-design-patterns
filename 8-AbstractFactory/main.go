@@ -1,12 +1,17 @@
 package main
 
 import (
+	"errors"
+
 	"github.com/uqichi/go-design-patterns/8-AbstractFactory/factory"
 	"github.com/uqichi/go-design-patterns/8-AbstractFactory/listfactory"
 )
 
 func main() {
-	var fac factory.Factory = listfactory.ListFactory{}
+	fac, err := getFactory("list")
+	if err != nil {
+		panic(err)
+	}
 	asahi := fac.CreateLink("Asahi", "http://www.asahi.com")
 	yomiuri := fac.CreateLink("Yomiuri", "http://www.yomiuri.co.jp")
 	usYahoo := fac.CreateLink("Yahoo", "http://www.yahoo.com")
@@ -31,4 +36,12 @@ func main() {
 	page.Add(traynews)
 	page.Add(traysearch)
 	page.Output(page)
+}
+
+func getFactory(name string) (factory.Factory, error) {
+	switch name {
+	case "list":
+		return listfactory.ListFactory{}, nil
+	}
+	return nil, errors.New("factory not found")
 }
